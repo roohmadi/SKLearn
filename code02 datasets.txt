@@ -1,0 +1,68 @@
+#Import scikitlearn
+from sklearn.datasets import load_iris
+
+#Load dataset
+iris = load_iris()
+
+#View content
+iris
+
+#View keys
+iris.keys()
+
+#Menampilkan deskripsi dataset
+print(iris.DESCR)
+
+#Explanatory Variables (Features)
+X = iris.data
+X.shape
+# X
+
+#Response Variable (Target)
+y = iris.target
+y.shape
+# y
+
+#feature names
+feature_names = iris.feature_names
+feature_names
+
+#target names
+target_names = iris.target_names
+target_names
+
+
+#Visualisasi Data Sepal Length & Width
+#import matplotlib
+import matplotlib.pyplot as plt
+
+X = X[:, :2]
+
+x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].min() + 0.5
+y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].min() + 0.5
+
+plt.scatter(X[:, 0], X[:, 1], c=y)
+plt.xlabel('Sepal length')
+plt.ylabel('Sepal width')
+
+plt.xlim(x_min, x_max)
+plt.ylim(y_min, y_max)
+plt.grid(True)
+plt.show()
+
+
+#Split data menjadi data train dan data testing
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=1)
+
+print(f'X train: {X_train.shape}')
+print(f'X test: {X_test.shape}')
+print(f'y train: {y_train.shape}')
+print(f'y test: {y_test.shape}')
+
+#Load Iris Dataset sebagai Pandas DataFrame
+iris = load_iris(as_frame=True)
+
+iris_features_df = iris.data
+iris_features_df
